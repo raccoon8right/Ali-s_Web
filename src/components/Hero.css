@@ -196,3 +196,117 @@
     color: var(--tag-text, var(--rojo));
     margin-top: 0.3rem;
 }
+
+/* ================================
+   RESPONSIVO
+================================ */
+
+/* Laptop 769px — 1024px */
+@media (max-width: 1024px) {
+    .hero {
+        padding: 3rem 2rem;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+}
+
+/* Tablet 481px — 768px */
+@media (max-width: 768px) {
+    .hero {
+        padding: 2.5rem 1.5rem;
+    }
+
+    .hero-content {
+        gap: 1.5rem;
+    }
+
+    .hero-avatar {
+        width: 120px;
+        height: 120px;
+    }
+
+    .hero-title {
+        font-size: 1.8rem;
+    }
+
+    .hero-desc {
+        font-size: 0.88rem;
+    }
+
+    .htag {
+        font-size: 0.78rem;
+        padding: 4px 10px;
+    }
+
+    /* Tooltip hacia abajo en tablet para no salirse */
+    .tag-tooltip {
+        bottom: auto;
+        top: calc(100% + 10px);
+    }
+
+    .tag-tooltip::after {
+        top: auto;
+        bottom: 100%;
+        border-top-color: transparent;
+        border-bottom-color: var(--tag-color, var(--pastel-rosa));
+    }
+}
+
+/* Mobile < 480px */
+@media (max-width: 480px) {
+    .hero {
+        padding: 2rem 1rem;
+        min-height: auto;
+    }
+
+    .hero-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .hero-avatar {
+        width: 100px;
+        height: 100px;
+    }
+
+    .hero-pretitle {
+        font-size: 0.72rem;
+    }
+
+    .hero-title {
+        font-size: 1.6rem;
+    }
+
+    .hero-desc {
+        font-size: 0.82rem;
+        margin-bottom: 1rem;
+    }
+
+    .hero-tags {
+        justify-content: center;
+    }
+
+    .htag {
+        font-size: 0.75rem;
+        padding: 4px 10px;
+    }
+
+    /* Tooltip centrado en mobile */
+    .tag-tooltip {
+        left: 0;
+        transform: none;
+        bottom: auto;
+        top: calc(100% + 10px);
+        width: 140px;
+    }
+
+    .tag-tooltip::after {
+        bottom: 100%;
+        border-top-color: transparent;
+        border-bottom-color: var(--tag-color, var(--pastel-rosa));
+    }
+}

@@ -143,3 +143,138 @@
     color: var(--texto-suave);
     line-height: 1.5;
 }
+
+/* ================================
+   RESPONSIVO
+================================ */
+
+/* Laptop 769px — 1024px */
+@media (max-width: 1024px) {
+    .cal-title {
+        font-size: 1rem;
+    }
+
+    .cal-day {
+        font-size: 2.2rem;
+    }
+}
+
+/* Tablet 481px — 768px */
+@media (max-width: 768px) {
+    .calendar {
+        gap: 0.6rem;
+    }
+
+    .cal-title {
+        font-size: 0.95rem;
+    }
+
+    .cal-date {
+        padding: 0.5rem;
+    }
+
+    .cal-weekday {
+        font-size: 0.68rem;
+    }
+
+    .cal-day {
+        font-size: 2rem;
+    }
+
+    .cal-month {
+        font-size: 0.72rem;
+    }
+
+    .cal-msg {
+        padding: 0.6rem;
+    }
+
+    .cal-emoji {
+        font-size: 1.6rem;
+    }
+
+    .cal-msg-title {
+        font-size: 0.8rem;
+    }
+
+    .cal-msg-sub {
+        font-size: 0.7rem;
+    }
+
+    .cal-special {
+        padding: 0.7rem;
+    }
+
+    .cal-special-flowers {
+        font-size: 1.5rem;
+    }
+
+    .cal-special-title {
+        font-size: 0.88rem;
+    }
+
+    .cal-special-message {
+        font-size: 0.72rem;
+    }
+}
+
+/* Mobile < 480px */
+@media (max-width: 480px) {
+    .calendar {
+        gap: 0.5rem;
+    }
+
+    .cal-title {
+        font-size: 0.9rem;
+    }
+
+    .cal-date {
+        padding: 0.4rem;
+    }
+
+    .cal-weekday {
+        font-size: 0.65rem;
+    }
+
+    .cal-day {
+        font-size: 1.8rem;
+    }
+
+    .cal-month {
+        font-size: 0.68rem;
+    }
+
+    .cal-msg {
+        padding: 0.5rem;
+    }
+
+    .cal-emoji {
+        font-size: 1.4rem;
+        margin-bottom: 0.2rem;
+    }
+
+    .cal-msg-title {
+        font-size: 0.76rem;
+    }
+
+    .cal-msg-sub {
+        font-size: 0.67rem;
+    }
+
+    .cal-special {
+        padding: 0.6rem;
+    }
+
+    .cal-special-flowers {
+        font-size: 1.3rem;
+        margin-bottom: 0.2rem;
+    }
+
+    .cal-special-title {
+        font-size: 0.82rem;
+    }
+
+    .cal-special-message {
+        font-size: 0.68rem;
+    }
+}

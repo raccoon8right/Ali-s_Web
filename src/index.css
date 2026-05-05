@@ -48,3 +48,29 @@ body {
     color: var(--texto);
     min-height: 100vh;
 }
+
+/* ================================
+    RESPONSIVO — GLOBAL
+================================ */
+
+/* Tablet */
+@media (max-width: 768px) {
+    :root {
+        --fuente-titulo-size: 1.4rem;
+    }
+
+    body {
+        font-size: 0.95rem;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    :root {
+        --fuente-titulo-size: 1.2rem;
+    }
+
+    body {
+        font-size: 0.9rem;
+    }
+}

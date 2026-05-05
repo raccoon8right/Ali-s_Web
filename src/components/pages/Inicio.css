@@ -48,3 +48,81 @@
     font-size: 0.88rem;
     font-weight: 700;
 }
+
+/* ================================
+   RESPONSIVO
+================================ */
+
+/* Laptop 769px — 1024px */
+@media (max-width: 1024px) {
+    .inicio {
+        max-width: 100%;
+    }
+
+    .page-title {
+        font-size: 1.6rem;
+    }
+}
+
+/* Tablet 481px — 768px */
+@media (max-width: 768px) {
+    .page-title {
+        font-size: 1.5rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .inicio-desc {
+        font-size: 0.88rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .shortcuts {
+        grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+        gap: 0.8rem;
+    }
+
+    .shortcut-card {
+        padding: 1rem 0.8rem;
+        border-radius: var(--radio-md);
+    }
+
+    .shortcut-icon {
+        font-size: 1.7rem;
+    }
+
+    .shortcut-label {
+        font-size: 0.82rem;
+    }
+}
+
+/* Mobile < 480px */
+@media (max-width: 480px) {
+    .page-title {
+        font-size: 1.3rem;
+        margin-bottom: 0.6rem;
+    }
+
+    .inicio-desc {
+        font-size: 0.82rem;
+        line-height: 1.6;
+        margin-bottom: 1rem;
+    }
+
+    .shortcuts {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.6rem;
+    }
+
+    .shortcut-card {
+        padding: 0.8rem 0.5rem;
+        border-radius: var(--radio-md);
+    }
+
+    .shortcut-icon {
+        font-size: 1.5rem;
+    }
+
+    .shortcut-label {
+        font-size: 0.75rem;
+    }
+}

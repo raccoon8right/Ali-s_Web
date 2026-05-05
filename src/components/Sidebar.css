@@ -212,3 +212,82 @@
         opacity: 1;
     }
 }
+
+/* ================================
+   RESPONSIVO
+================================ */
+
+/* Laptop 769px — 1024px */
+@media (max-width: 1024px) {
+    .sidebar {
+        padding: 1rem 0.3rem;
+    }
+
+    .gadget-btn {
+        width: 44px;
+        height: 44px;
+    }
+}
+
+/* Tablet 481px — 768px */
+@media (max-width: 768px) {
+    .sidebar {
+        padding: 0.8rem 0.3rem;
+        gap: 0.6rem;
+    }
+
+    .gadget-btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+    }
+
+    .gadget-icon {
+        font-size: 1rem;
+    }
+
+    /* Panel más angosto en tablet */
+    .gadget-panel {
+        width: 220px;
+        padding: 1rem;
+    }
+}
+
+/* Mobile < 480px */
+@media (max-width: 480px) {
+    .sidebar {
+        flex-direction: row;
+        justify-content: center;
+        padding: 0.6rem;
+        gap: 0.6rem;
+        border-right: none;
+        border-bottom: 2px solid var(--pastel-rosa);
+    }
+
+    .gadget-btn {
+        width: 40px;
+        height: 40px;
+    }
+
+    /* Pulso desactivado en mobile para mejor rendimiento */
+    .gadget-btn:not(.active)::after {
+        display: none;
+    }
+
+    /* Panel aparece hacia abajo en mobile */
+    .gadget-panel {
+        position: fixed;
+        left: 50%;
+        top: auto;
+        bottom: 1rem;
+        transform: translateX(-50%);
+        width: 90vw;
+        max-width: 320px;
+        z-index: 200;
+    }
+
+    /* Tooltip desactivado en mobile */
+    .gadget-tooltip {
+        display: none;
+    }
+}

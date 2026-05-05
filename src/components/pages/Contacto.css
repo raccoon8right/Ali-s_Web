@@ -128,3 +128,143 @@
     background: var(--rojo);
     color: var(--blanco);
 }
+
+/* ================================
+   RESPONSIVO
+================================ */
+
+/* Laptop 769px — 1024px */
+@media (max-width: 1024px) {
+    .contact-form {
+        max-width: 100%;
+    }
+}
+
+/* Tablet 481px — 768px */
+@media (max-width: 768px) {
+    .contacto-desc {
+        font-size: 0.88rem;
+        margin-bottom: 1rem;
+    }
+
+    .contact-form {
+        padding: 1.2rem;
+        border-radius: var(--radio-md);
+    }
+
+    .form-group {
+        margin-bottom: 0.8rem;
+    }
+
+    .form-label {
+        font-size: 0.78rem;
+    }
+
+    .form-input,
+    .form-textarea {
+        font-size: 0.82rem;
+        padding: 0.45rem 0.7rem;
+    }
+
+    .form-textarea {
+        height: 85px;
+    }
+
+    .form-error {
+        font-size: 0.76rem;
+    }
+
+    .submit-btn {
+        font-size: 0.88rem;
+        padding: 0.5rem;
+    }
+
+    .success-box {
+        padding: 2rem 1.5rem;
+    }
+
+    .success-icon {
+        font-size: 2.5rem;
+    }
+
+    .success-title {
+        font-size: 1.3rem;
+    }
+
+    .success-desc {
+        font-size: 0.85rem;
+    }
+
+    .reset-btn {
+        font-size: 0.82rem;
+        padding: 0.45rem 1.2rem;
+    }
+}
+
+/* Mobile < 480px */
+@media (max-width: 480px) {
+    .contacto-desc {
+        font-size: 0.82rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .contact-form {
+        padding: 1rem;
+        border-radius: var(--radio-md);
+    }
+
+    .form-group {
+        margin-bottom: 0.7rem;
+    }
+
+    .form-label {
+        font-size: 0.75rem;
+        margin-bottom: 0.2rem;
+    }
+
+    .form-input,
+    .form-textarea {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.6rem;
+        border-radius: var(--radio-sm);
+    }
+
+    .form-textarea {
+        height: 75px;
+    }
+
+    .form-error {
+        font-size: 0.72rem;
+        margin-bottom: 0.6rem;
+    }
+
+    .submit-btn {
+        font-size: 0.82rem;
+        padding: 0.45rem;
+    }
+
+    .success-box {
+        padding: 1.5rem 1rem;
+        border-radius: var(--radio-md);
+    }
+
+    .success-icon {
+        font-size: 2.2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .success-title {
+        font-size: 1.1rem;
+        margin-bottom: 0.4rem;
+    }
+
+    .success-desc {
+        font-size: 0.8rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .reset-btn {
+        font-size: 0.78rem;
+        padding: 0.4rem 1rem;
+    }
+}

@@ -114,3 +114,137 @@
     color: var(--texto);
     line-height: 1.3;
 }
+
+/* ================================
+   RESPONSIVO
+================================ */
+
+/* Laptop 769px — 1024px */
+@media (max-width: 1024px) {
+    .about-box {
+        padding: 1.5rem;
+    }
+
+    .facts-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+}
+
+/* Tablet 481px — 768px */
+@media (max-width: 768px) {
+    .about-box {
+        padding: 1.2rem;
+        gap: 1rem;
+    }
+
+    .about-avatar {
+        width: 70px;
+        height: 70px;
+        font-size: 1.5rem;
+    }
+
+    .about-name {
+        font-size: 1.2rem;
+    }
+
+    .about-desc {
+        font-size: 0.85rem;
+        line-height: 1.6;
+        margin-bottom: 0.8rem;
+    }
+
+    .hobbies-title {
+        font-size: 0.76rem;
+        margin-bottom: 0.4rem;
+    }
+
+    .hobby-chip {
+        font-size: 0.73rem;
+        padding: 3px 10px;
+    }
+
+    .facts-title {
+        font-size: 1.1rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .facts-grid {
+        grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+        gap: 0.6rem;
+    }
+
+    .fact-card {
+        padding: 0.8rem;
+    }
+
+    .fact-icon {
+        font-size: 1.5rem;
+    }
+
+    .fact-text {
+        font-size: 0.76rem;
+    }
+}
+
+/* Mobile < 480px */
+@media (max-width: 480px) {
+    .sobre-mi {
+        width: 100%;
+    }
+
+    .about-box {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 1rem;
+        gap: 0.8rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .about-avatar {
+        width: 65px;
+        height: 65px;
+        font-size: 1.4rem;
+    }
+
+    .about-name {
+        font-size: 1.1rem;
+    }
+
+    .about-desc {
+        font-size: 0.82rem;
+        margin-bottom: 0.7rem;
+    }
+
+    .hobbies {
+        justify-content: center;
+    }
+
+    .hobby-chip {
+        font-size: 0.7rem;
+        padding: 3px 8px;
+    }
+
+    .facts-title {
+        font-size: 1rem;
+        margin-bottom: 0.6rem;
+    }
+
+    .facts-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+    }
+
+    .fact-card {
+        padding: 0.7rem 0.5rem;
+    }
+
+    .fact-icon {
+        font-size: 1.4rem;
+    }
+
+    .fact-text {
+        font-size: 0.72rem;
+        line-height: 1.3;
+    }
+}
