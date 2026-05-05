@@ -1,22 +1,66 @@
+.music-player {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+/* Título */
 .music-title {
     font-family: var(--fuente-titulo);
     font-size: 1.1rem;
     color: var(--azul-oscuro);
-    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+/* Filtros por artista */
+.artist-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+}
+
+.artist-btn {
+    padding: 3px 10px;
+    border-radius: var(--radio-pill);
+    border: 1.5px solid var(--azul-suave);
+    background: var(--blanco);
+    font-family: var(--fuente-cuerpo);
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--texto-suave);
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.artist-btn:hover {
+    background: var(--azul-suave);
+    color: var(--azul-oscuro);
+}
+
+.artist-btn.active {
+    background: var(--azul);
+    color: var(--blanco);
+    border-color: var(--azul);
 }
 
 /* Lista de canciones */
 .track-list {
     display: flex;
     flex-direction: column;
-    gap: 0.3rem;
+    gap: 0.2rem;
+    max-height: 200px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--azul-suave) transparent;
 }
 
 .track {
     display: flex;
     align-items: center;
     gap: 0.6rem;
-    padding: 0.5rem 0.6rem;
+    padding: 0.45rem 0.6rem;
     border-radius: var(--radio-md);
     cursor: pointer;
     transition: background 0.15s;
@@ -27,15 +71,23 @@
     background: var(--azul-suave);
 }
 
-.track-icon {
-    width: 32px;
-    height: 32px;
-    border-radius: var(--radio-sm);
+.track-play-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--pastel-rosa);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1rem;
+    font-size: 0.7rem;
+    color: var(--rojo);
     flex-shrink: 0;
+    transition: background 0.2s;
+}
+
+.track.playing .track-play-icon {
+    background: var(--azul);
+    color: var(--blanco);
 }
 
 .track-info {
@@ -44,58 +96,91 @@
 }
 
 .track-name {
-    font-size: 0.82rem;
+    font-size: 0.8rem;
     font-weight: 700;
     color: var(--azul-oscuro);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+/* Distintivo favorito */
+.track-favorite {
+    color: #f9c74f;
+    font-size: 0.7rem;
+    animation: starPulse 2s ease-in-out infinite;
+}
+
+@keyframes starPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.3);
+        opacity: 0.8;
+    }
 }
 
 .track-artist {
-    font-size: 0.73rem;
+    font-size: 0.72rem;
     color: var(--texto-suave);
-}
-
-.track-play {
-    font-size: 0.9rem;
-    color: var(--azul);
+    margin-top: 1px;
 }
 
 /* Barra de progreso */
 .now-playing {
-    margin-top: 0.8rem;
+    border-top: 1.5px solid var(--azul-suave);
+    padding-top: 0.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
 }
 
-.music-bar {
-    height: 4px;
+.now-playing-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.now-playing-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--azul-oscuro);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 180px;
+}
+
+.now-playing-icon {
+    font-size: 0.8rem;
+    color: var(--azul);
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.now-playing-icon:hover {
+    transform: scale(1.2);
+}
+
+.progress-bar {
+    height: 5px;
     background: var(--azul-suave);
-    border-radius: 2px;
+    border-radius: 99px;
+    cursor: pointer;
     overflow: hidden;
 }
 
-.music-fill {
+.progress-fill {
     height: 100%;
-    width: 0%;
     background: linear-gradient(90deg, var(--azul), var(--rojo));
-    border-radius: 2px;
-    animation: progress 3s linear infinite;
-}
-
-@keyframes progress {
-    from {
-        width: 0%;
-    }
-
-    to {
-        width: 100%;
-    }
-}
-
-.now-playing-text {
-    font-size: 0.75rem;
-    color: var(--azul);
-    margin-top: 0.4rem;
-    text-align: center;
-    font-weight: 600;
+    border-radius: 99px;
+    transition: width 0.1s linear;
 }

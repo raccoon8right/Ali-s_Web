@@ -1,31 +1,59 @@
-import React, { useState } from "react"
+import { useState } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-//import "./DiceWidget.css"
+import "./DiceWidget.css"
 
 const activities = [
-    "¡Pinta algo hoy!",
-    "¡Cocina una receta nueva!",
-    "¡Escucha un álbum completo!",
-    "¡Dibuja lo que ves!",
-    "¡Sal a explorar!",
-    "¡Toma fotos hoy!",
+    { icon: "palette", text: "¡Pinta algo hoy!" },
+    { icon: "utensils", text: "¡Cocina una receta nueva!" },
+    { icon: "music", text: "¡Escucha un álbum completo!" },
+    { icon: "pencil", text: "¡Dibuja lo que ves!" },
+    { icon: "plane", text: "¡Sal a explorar!" },
+    { icon: "camera", text: "¡Toma fotos hoy!" },
+    { icon: "book", text: "¡Lee algo nuevo!" },
+    { icon: "cat", text: "¡Pasa tiempo con tus gatos!" },
 ]
 
 function DiceWidget() {
     const [activity, setActivity] = useState(null)
+    const [rolling, setRolling] = useState(false)
 
     const roll = () => {
-        const random = activities[Math.floor(Math.random() * activities.length)]
-        setActivity(random)
+        if (rolling) return
+        setRolling(true)
+        setActivity(null)
+
+        setTimeout(() => {
+            const random = activities[Math.floor(Math.random() * activities.length)]
+            setActivity(random)
+            setRolling(false)
+        }, 600)
     }
 
     return (
         <div className="dice-widget">
-            <div className="dice-title">Actividad del día</div>
-            <button className="dice-btn" onClick={roll}>
-                <FontAwesomeIcon icon="dice" /> Lanzar
+            <div className="dice-title">
+                <FontAwesomeIcon icon="dice" /> Actividad del día
+            </div>
+
+            <p className="dice-desc">
+                ¿Sin ideas? ¡Lanza el dado y descubre qué hacer hoy!
+            </p>
+
+            <button
+                className={`dice-btn ${rolling ? "rolling" : ""}`}
+                onClick={roll}
+                disabled={rolling}
+            >
+                <FontAwesomeIcon icon="dice" className="dice-btn-icon" />
+                {rolling ? "Lanzando..." : "Lanzar dado"}
             </button>
-            {activity && <div className="dice-result">{activity}</div>}
+
+            {activity && !rolling && (
+                <div className="dice-result">
+                    <FontAwesomeIcon icon={activity.icon} className="result-icon" />
+                    <span>{activity.text}</span>
+                </div>
+            )}
         </div>
     )
 }

@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 const links = [
     { id: "inicio", label: "Inicio", icon: "house" },
     { id: "blog", label: "Blog", icon: "pen-nib" },
+    { id: "galeria", label: "Galería", icon: "image" },
     { id: "sobre", label: "Sobre mí", icon: "user" },
     { id: "contacto", label: "Contacto", icon: "envelope" },
 ]

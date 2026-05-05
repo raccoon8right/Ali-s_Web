@@ -1,53 +1,198 @@
-import { useState } from "react"
+import { useState, useRef, useEffect } from "react"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import "./MusicPlayer.css"
 
-const tracks = [
-    { id: 1, name: "Espresso", artist: "Sabrina Carpenter", icon: "🎀", color: "var(--pastel-rosa)" },
-    { id: 2, name: "Flowers", artist: "Miley Cyrus", icon: "🌸", color: "var(--pastel-verde)" },
-    { id: 3, name: "Levitating", artist: "Dua Lipa", icon: "✨", color: "var(--azul-suave)" },
-    { id: 4, name: "Cruel Summer", artist: "Taylor Swift", icon: "☀️", color: "var(--pastel-amarillo)" },
+import idontwanna from "../../assets/music/Billie Eilish - idontwannabeyouanymore.mp3"
+import sixfeetunder from "../../assets/music/Billie Eilish - Six Feet Under.mp3"
+import watch from "../../assets/music/Billie Eilish - watch.mp3"
+import cigarettes from "../../assets/music/TV Girl - Cigarettes out the Window.mp3"
+import notallowed from "../../assets/music/TV Girl - Not Allowed.mp3"
+import theline from "../../assets/music/Twenty One Pilots - The Line (from Arcane Season 2).mp3"
+
+const allTracks = [
+    {
+        id: 1,
+        title: "I Don't Wanna Be You Anymore",
+        artist: "Billie Eilish",
+        src: idontwanna,
+        favorite: true,
+    },
+    {
+        id: 2,
+        title: "Six Feet Under",
+        artist: "Billie Eilish",
+        src: sixfeetunder,
+        favorite: true,
+    },
+    {
+        id: 3,
+        title: "Watch",
+        artist: "Billie Eilish",
+        src: watch,
+        favorite: true,
+    },
+    {
+        id: 4,
+        title: "Cigarettes out the Window",
+        artist: "TV Girl",
+        src: cigarettes,
+        favorite: false,
+    },
+    {
+        id: 5,
+        title: "Not Allowed",
+        artist: "TV Girl",
+        src: notallowed,
+        favorite: false,
+    },
+    {
+        id: 6,
+        title: "The Line",
+        artist: "Twenty One Pilots",
+        src: theline,
+        favorite: true,
+    },
 ]
 
+const artists = ["Todos", "Billie Eilish", "TV Girl", "Twenty One Pilots"]
+
 function MusicPlayer() {
-    const [playing, setPlaying] = useState(null)
+    const [activeArtist, setActiveArtist] = useState("Todos")
+    const [currentTrack, setCurrentTrack] = useState(null)
+    const [isPlaying, setIsPlaying] = useState(false)
+    const [progress, setProgress] = useState(0)
+    const audioRef = useRef(null)
+
+    const filtered = activeArtist === "Todos"
+        ? allTracks
+        : allTracks.filter(t => t.artist === activeArtist)
+
+    // Actualiza la barra de progreso
+    useEffect(() => {
+        const audio = audioRef.current
+        if (!audio) return
+
+        const update = () => {
+            if (audio.duration) {
+                setProgress((audio.currentTime / audio.duration) * 100)
+            }
+        }
+
+        audio.addEventListener("timeupdate", update)
+        return () => audio.removeEventListener("timeupdate", update)
+    }, [])
 
     const handleTrack = (track) => {
-        setPlaying(playing?.id === track.id ? null : track)
+        const audio = audioRef.current
+
+        if (currentTrack?.id === track.id) {
+            // Pausar o reanudar la misma canción
+            if (isPlaying) {
+                audio.pause()
+                setIsPlaying(false)
+            } else {
+                audio.play()
+                setIsPlaying(true)
+            }
+        } else {
+            // Cambiar canción
+            audio.src = track.src
+            audio.play()
+            setCurrentTrack(track)
+            setIsPlaying(true)
+            setProgress(0)
+        }
+    }
+
+    const handleEnded = () => {
+        setIsPlaying(false)
+        setProgress(0)
+    }
+
+    const handleSeek = (e) => {
+        const audio = audioRef.current
+        if (!audio?.duration) return
+        const rect = e.currentTarget.getBoundingClientRect()
+        const ratio = (e.clientX - rect.left) / rect.width
+        audio.currentTime = ratio * audio.duration
+        setProgress(ratio * 100)
     }
 
     return (
         <div className="music-player">
-            <div className="music-title">Música de Ali 🎵</div>
+            <div className="music-title">
+                <FontAwesomeIcon icon="music" /> Música de Ali
+            </div>
 
+            {/* Filtro por artista */}
+            <div className="artist-filters">
+                {artists.map(artist => (
+                    <button
+                        key={artist}
+                        className={`artist-btn ${activeArtist === artist ? "active" : ""}`}
+                        onClick={() => setActiveArtist(artist)}
+                    >
+                        {artist}
+                    </button>
+                ))}
+            </div>
+
+            {/* Lista de canciones */}
             <div className="track-list">
-                {tracks.map(track => (
+                {filtered.map(track => (
                     <div
                         key={track.id}
-                        className={`track ${playing?.id === track.id ? "playing" : ""}`}
+                        className={`track ${currentTrack?.id === track.id ? "playing" : ""}`}
                         onClick={() => handleTrack(track)}
                     >
-                        <div className="track-icon" style={{ background: track.color }}>
-                            {track.icon}
+                        <div className="track-play-icon">
+                            <FontAwesomeIcon
+                                icon={currentTrack?.id === track.id && isPlaying ? "pause" : "play"}
+                            />
                         </div>
+
                         <div className="track-info">
-                            <div className="track-name">{track.name}</div>
+                            <div className="track-name">
+                                {track.title}
+                                {track.favorite && (
+                                    <span className="track-favorite">
+                                        <FontAwesomeIcon icon="star" />
+                                    </span>
+                                )}
+                            </div>
                             <div className="track-artist">{track.artist}</div>
                         </div>
-                        <span className="track-play">
-                            {playing?.id === track.id ? "⏸" : "▶"}
-                        </span>
                     </div>
                 ))}
             </div>
 
-            {playing && (
+            {/* Barra de progreso */}
+            {currentTrack && (
                 <div className="now-playing">
-                    <div className="music-bar">
-                        <div className="music-fill"></div>
+                    <div className="now-playing-info">
+                        <span className="now-playing-title">{currentTrack.title}</span>
+                        <FontAwesomeIcon
+                            icon={isPlaying ? "pause" : "play"}
+                            className="now-playing-icon"
+                            onClick={() => {
+                                if (isPlaying) {
+                                    audioRef.current.pause()
+                                    setIsPlaying(false)
+                                } else {
+                                    audioRef.current.play()
+                                    setIsPlaying(true)
+                                }
+                            }}
+                        />
                     </div>
-                    <div className="now-playing-text">▶ {playing.name} — {playing.artist}</div>
+                    <div className="progress-bar" onClick={handleSeek}>
+                        <div className="progress-fill" style={{ width: `${progress}%` }} />
+                    </div>
                 </div>
             )}
+
+            {/* Elemento de audio oculto */}
+            <audio ref={audioRef} onEnded={handleEnded} />
         </div>
     )
 }

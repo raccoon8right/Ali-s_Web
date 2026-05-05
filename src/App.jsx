@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar.jsx"
 import Sidebar from "./components/Siderbar.jsx"
 import Inicio from "./components/pages/Inicio.jsx"
 import Blog from "./components/pages/Blog.jsx"
+import Galeria from "./components/pages/Galeria.jsx"
 import SobreMi from "./components/pages/SobreMi.jsx"
 import Contacto from "./components/pages/Contacto.jsx"
 import './App.css'
@@ -21,6 +22,7 @@ function App() {
         <main className="main">
           {currentPage === "inicio"   && <Inicio setCurrentPage={setCurrentPage} />}
           {currentPage === "blog"     && <Blog />}
+          {currentPage === "galeria"  && <Galeria />}
           {currentPage === "sobre"    && <SobreMi />}
           {currentPage === "contacto" && <Contacto />}
         </main>
