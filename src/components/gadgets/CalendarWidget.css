@@ -1,14 +1,33 @@
+.calendar {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+/* Título */
 .cal-title {
     font-family: var(--fuente-titulo);
     font-size: 1.1rem;
     color: var(--azul-oscuro);
-    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
 }
 
 /* Fecha */
 .cal-date {
     text-align: center;
-    margin-bottom: 0.8rem;
+    background: linear-gradient(135deg, var(--pastel-rosa), var(--azul-suave));
+    border-radius: var(--radio-md);
+    padding: 0.6rem;
+}
+
+.cal-weekday {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--azul-oscuro);
 }
 
 .cal-day {
@@ -26,7 +45,7 @@
     margin-top: 0.2rem;
 }
 
-/* Mensaje del día */
+/* Mensaje normal */
 .cal-msg {
     background: linear-gradient(135deg, var(--pastel-rosa), var(--azul-suave));
     border-radius: var(--radio-md);
@@ -51,4 +70,76 @@
     color: var(--texto-suave);
     margin-top: 0.2rem;
     line-height: 1.4;
+}
+
+/* Mensaje especial */
+.cal-special {
+    border-radius: var(--radio-md);
+    padding: 0.9rem;
+    text-align: center;
+    animation: specialPop 0.4s ease;
+}
+
+@keyframes specialPop {
+    0% {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    70% {
+        transform: scale(1.03);
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Tipos de días especiales */
+.cal-special--flowers {
+    background: linear-gradient(135deg, #ffd6e8, #fff3b0);
+    border: 2px solid var(--pastel-rosa);
+}
+
+.cal-special--birthday {
+    background: linear-gradient(135deg, #fff3b0, #efe6ff);
+    border: 2px solid #f9c74f;
+}
+
+.cal-special--holiday {
+    background: linear-gradient(135deg, var(--azul-suave), var(--pastel-verde));
+    border: 2px solid var(--azul);
+}
+
+.cal-special-flowers {
+    font-size: 1.8rem;
+    display: block;
+    margin-bottom: 0.4rem;
+    animation: flowerBounce 1.5s ease-in-out infinite;
+}
+
+@keyframes flowerBounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+.cal-special-title {
+    font-family: var(--fuente-titulo);
+    font-size: 0.95rem;
+    color: var(--rojo);
+    margin-bottom: 0.3rem;
+}
+
+.cal-special-message {
+    font-size: 0.78rem;
+    color: var(--texto-suave);
+    line-height: 1.5;
 }
